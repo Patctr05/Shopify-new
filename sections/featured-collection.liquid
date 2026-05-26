@@ -92,7 +92,6 @@
       {%- endif -%}
     </div>
 
-      {%- paginate collections.all.products by 250 -%}
       {% comment %} Men's T-Shirts Category {% endcomment %}
       <div id="mens-t-shirts" class="category-group page-width">
         <h3 class="category-heading">Men's T-Shirts</h3>
@@ -256,9 +255,7 @@
               </li>
             {%- endif -%}
           {%- endfor -%}
-        </ul>
       </div>
-      {%- endpaginate -%}
 
 
     {%- if section.settings.show_view_all and more_in_collection -%}
