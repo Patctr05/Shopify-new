@@ -93,24 +93,30 @@
     </div>
 
     {%- if section.settings.collection.handle == 'all' or section.settings.collection.handle == 'frontpage' or section.settings.collection == blank -%}
+      {%- paginate collections.all.products by 250 -%}
       {% comment %} Men's T-Shirts Category {% endcomment %}
       <div id="mens-t-shirts" class="category-group page-width">
         <h3 class="category-heading">Men's T-Shirts</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['mens-t-shirts'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'shirt' or title_dc contains 'tee' -%}
+              {%- unless title_dc contains 'woman' or title_dc contains 'women' or title_dc contains 'women’s' or title_dc contains 'woman’s' -%}
+                <li class="grid__item">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: false,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    section_id: section.id,
+                    quick_add: section.settings.quick_add
+                  %}
+                </li>
+              {%- endunless -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
@@ -119,20 +125,25 @@
       <div id="womens-t-shirts" class="category-group page-width">
         <h3 class="category-heading">Women's T-Shirts</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['womens-t-shirts'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'shirt' or title_dc contains 'tee' -%}
+              {%- if title_dc contains 'woman' or title_dc contains 'women' or title_dc contains 'women’s' or title_dc contains 'woman’s' -%}
+                <li class="grid__item">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: false,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    section_id: section.id,
+                    quick_add: section.settings.quick_add
+                  %}
+                </li>
+              {%- endif -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
@@ -141,20 +152,23 @@
       <div id="coffee-cups" class="category-group page-width">
         <h3 class="category-heading">Coffee Cups</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['coffee-cups'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'mug' or title_dc contains 'cup' -%}
+              <li class="grid__item">
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  lazy_load: false,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  section_id: section.id,
+                  quick_add: section.settings.quick_add
+                %}
+              </li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
@@ -169,20 +183,27 @@
       <div id="phone-cases" class="category-group page-width">
         <h3 class="category-heading">Phone Cases</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['phone-cases'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'case' or title_dc contains 'cover' -%}
+              {%- if title_dc contains 'iphone' or title_dc contains 'samsung' or title_dc contains 'pixel' or title_dc contains 'galaxy' -%}
+                {%- unless title_dc contains 'webcam' -%}
+                  <li class="grid__item">
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: section.settings.image_shape,
+                      lazy_load: false,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      section_id: section.id,
+                      quick_add: section.settings.quick_add
+                    %}
+                  </li>
+                {%- endunless -%}
+              {%- endif -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
@@ -191,20 +212,25 @@
       <div id="webcam-covers" class="category-group page-width">
         <h3 class="category-heading">Webcam Covers</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['webcam-covers'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'webcam' or title_dc contains 'camera cover' -%}
+              {%- unless title_dc contains 'iphone' or title_dc contains 'samsung' or title_dc contains 'pixel' or title_dc contains 'galaxy' -%}
+                <li class="grid__item">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: false,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    section_id: section.id,
+                    quick_add: section.settings.quick_add
+                  %}
+                </li>
+              {%- endunless -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
@@ -213,23 +239,27 @@
       <div id="screen-protectors" class="category-group page-width">
         <h3 class="category-heading">Screen Protectors</h3>
         <ul class="grid product-grid grid--4-col-desktop grid--2-col-tablet-down list-unstyled" role="list">
-          {%- for product in collections['screen-protectors'].products -%}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add
-              %}
-            </li>
+          {%- for product in collections.all.products -%}
+            {%- assign title_dc = product.title | downcase -%}
+            {%- if title_dc contains 'protector' -%}
+              <li class="grid__item">
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  lazy_load: false,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  section_id: section.id,
+                  quick_add: section.settings.quick_add
+                %}
+              </li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
+      {%- endpaginate -%}
     {%- else -%}
       <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <ul
